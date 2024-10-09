@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>International Airports of India</title>
+    <!-- Include Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <style>
+        #map {
+            height: 600px; /* Set the height of the map */
+            width: 100%;    /* Set the width of the map */
+        }
+    </style>
+</head>
+<body>
+
+<h3>Map of International Airports in India</h3>
+<div id="map"></div> <!-- Map container -->
+
+<!-- Include Leaflet JavaScript -->
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+<script>
+    // Initialize the map and set its view to India
+    var map = L.map('map').setView([20.5937, 78.9629], 5); // Coordinates for India
+
+    // Add ESRI Imagery as the base map layer
+    L.tileLayer('https://www.google.cn/maps/vt?lyrs=s@189&gl=cn&x={x}&y={y}&z={z}', {
+        maxZoom: 20,
+        attribution: 'Map data &copy; <a href="https://www.google.cn/maps">Google</a>',
+        id: 'google-street',
+    }).addTo(map);
+
+    // Add markers for major international airports in India
+    var airports = [
+        { "name": "Indira Gandhi International Airport (DEL)", "coords": [28.5562, 77.1000] },
+        { "name": "Chhatrapati Shivaji Maharaj International Airport (BOM)", "coords": [19.0896, 72.8656] },
+        { "name": "Kempegowda International Airport (BLR)", "coords": [13.1986, 77.7066] },
+        { "name": "Chennai International Airport (MAA)", "coords": [12.9941, 80.1709] },
+        { "name": "Netaji Subhash Chandra Bose International Airport (CCU)", "coords": [22.6547, 88.4467] },
+        { "name": "Cochin International Airport (COK)", "coords": [10.1520, 76.4019] },
+        { "name": "Rajiv Gandhi International Airport (HYD)", "coords": [17.2403, 78.4294] },
+        { "name": "Trivandrum International Airport (TRV)", "coords": [8.4821, 76.9207] }
+    ];
+
+    // Loop through the airport data and add a marker for each
+    airports.forEach(function(airport) {
+        L.marker(airport.coords).addTo(map)
+            .bindPopup('<b>' + airport.name + '</b>');
+    });
+</script>
+
+</body>
+</html>
