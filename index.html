@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,47 +9,77 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <style>
         #map {
-            height: 600px; /* Set the height of the map */
-            width: 100%;    /* Set the width of the map */
+            height: 600px;
+            /* Set the height of the map */
+            width: 100%;
+            /* Set the width of the map */
         }
     </style>
 </head>
+
 <body>
 
-<h3>Map of International Airports in India</h3>
-<div id="map"></div> <!-- Map container -->
+    <h3>Map of International Airports in India</h3>
+    <div id="map"></div> <!-- Map container -->
 
-<!-- Include Leaflet JavaScript -->
-<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-<script>
-    // Initialize the map and set its view to India
-    var map = L.map('map').setView([20.5937, 78.9629], 5); // Coordinates for India
+    <!-- Include Leaflet JavaScript -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script>
+        // Initialize the map and set its view to India
+        var map = L.map('map').setView([20.5937, 78.9629], 5); // Coordinates for India
 
-    // Add ESRI Imagery as the base map layer
-    L.tileLayer('https://www.google.cn/maps/vt?lyrs=s@189&gl=cn&x={x}&y={y}&z={z}', {
-        maxZoom: 20,
-        attribution: 'Map data &copy; <a href="https://www.google.cn/maps">Google</a>',
-        id: 'google-street',
-    }).addTo(map);
+        // Add ESRI Imagery as the base map layer
+        L.tileLayer('https://www.google.cn/maps/vt?lyrs=s@189&gl=cn&x={x}&y={y}&z={z}', {
+            maxZoom: 20,
+            attribution: 'Map data &copy; <a href="https://www.google.cn/maps">Google</a>',
+            id: 'google-street',
+        }).addTo(map);
 
-    // Add markers for major international airports in India
-    var airports = [
-        { "name": "Indira Gandhi International Airport (DEL)", "coords": [28.5562, 77.1000] },
-        { "name": "Chhatrapati Shivaji Maharaj International Airport (BOM)", "coords": [19.0896, 72.8656] },
-        { "name": "Kempegowda International Airport (BLR)", "coords": [13.1986, 77.7066] },
-        { "name": "Chennai International Airport (MAA)", "coords": [12.9941, 80.1709] },
-        { "name": "Netaji Subhash Chandra Bose International Airport (CCU)", "coords": [22.6547, 88.4467] },
-        { "name": "Cochin International Airport (COK)", "coords": [10.1520, 76.4019] },
-        { "name": "Rajiv Gandhi International Airport (HYD)", "coords": [17.2403, 78.4294] },
-        { "name": "Trivandrum International Airport (TRV)", "coords": [8.4821, 76.9207] }
-    ];
+        // Add markers for major international airports in India
+        var airports = [
+            { "name": "Indira Gandhi International Airport (DEL)", "coords": [28.5562, 77.1000] },
+            { "name": "Chhatrapati Shivaji Maharaj International Airport (BOM)", "coords": [19.0896, 72.8656] },
+            { "name": "Kempegowda International Airport (BLR)", "coords": [13.1986, 77.7066] },
+            { "name": "Chennai International Airport (MAA)", "coords": [12.9941, 80.1709] },
+            { "name": "Netaji Subhash Chandra Bose International Airport (CCU)", "coords": [22.6547, 88.4467] },
+            { "name": "Cochin International Airport (COK)", "coords": [10.1520, 76.4019] },
+            { "name": "Rajiv Gandhi International Airport (HYD)", "coords": [17.2403, 78.4294] },
+            { "name": "Trivandrum International Airport (TRV)", "coords": [8.4821, 76.9207] },
+            { "name": "Sri Guru Ram Dass Jee International Airport (ATQ)", "coords": [31.7096, 74.7973] },
+            { "name": "Lokpriya Gopinath Bordoloi International Airport (GAU)", "coords": [26.1068, 91.5859] },
+            { "name": "Biju Patnaik International Airport (BBI)", "coords": [20.2539, 85.8178] },
+            // { "name": "Gaya Airport (GAY)", "coords": [24.7446, 84.9429] },
+            { "name": "Veer Savarkar International Airport (IXZ)", "coords": [11.6414, 92.7297] },
+            { "name": "Sardar Vallabhbhai Patel International Airport (AMD)", "coords": [23.0712, 72.6347] },
+            { "name": "Mangalore International Airport (IXE)", "coords": [12.9613, 74.8901] },
+            { "name": "Calicut International Airport (CCJ)", "coords": [11.1367, 75.9553] },
+            { "name": "Dr. Babasaheb Ambedkar International Airport (NAG)", "coords": [21.0922, 79.0472] },
+            { "name": "Jaipur International Airport (JAI)", "coords": [26.8288, 75.8069] },
+            { "name": "Tiruchirappalli International Airport (TRZ)", "coords": [10.7654, 78.7097] },
+            { "name": "Chaudhary Charan Singh International Airport (LKO)", "coords": [26.7617, 80.8893] },
+            { "name": "Lal Bahadur Shastri International Airport (VNS)", "coords": [25.4522, 82.8614] },
+            { "name": "Kannur International Airport (CNN)", "coords": [11.9186, 75.5470] },
+            // { "name": "Surat Airport (STV)", "coords": [21.1175, 72.7411] },
+            // { "name": "Devi Ahilya Bai Holkar Airport (IDR)", "coords": [22.7244, 75.8011] },
+            // { "name": "Dabolim Airport (GOI)", "coords": [15.3800, 73.8314] },
+            { "name": "Coimbatore International Airport (CJB)", "coords": [11.0292, 77.0438] },
+            { "name": "Sheikh ul-Aalam International Airport (SXR)", "coords": [33.9871, 74.7745] },
+            { "name": "Imphal International Airport (IMF)", "coords": [24.7600, 93.8967] },
+            // { "name": "Madurai Airport (IXM)", "coords": [9.8345, 78.0934] },
+            { "name": "Bagdogra International Airport (IXB)", "coords": [26.6812, 88.3280] },
+            { "name": "Chandigarh International Airport (IXC)", "coords": [30.6735, 76.7885] },
+            // { "name": "Nashik Airport (ISK)", "coords": [20.1191, 73.9136] },
+            // { "name": "Vadodara Airport (BDQ)", "coords": [22.3292, 73.2104] },
+            // { "name": "Kushinagar Airport (KBK)", "coords": [26.7426, 83.8897] }
+        ];
 
-    // Loop through the airport data and add a marker for each
-    airports.forEach(function(airport) {
-        L.marker(airport.coords).addTo(map)
-            .bindPopup('<b>' + airport.name + '</b>');
-    });
-</script>
+        // Loop through the airport data and add a marker for each
+        airports.forEach(function (airport) {
+            L.marker(airport.coords).addTo(map)
+                .bindPopup('<b>' + airport.name + '</b>');
+        });
+    </script>
 
 </body>
+
 </html>
